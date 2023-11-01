@@ -1,0 +1,28 @@
+version: "3"
+services:
+  directus:
+    #image: directus/directus:10.7.1
+    image: atemndobs/directus:v1.3
+    container_name: cms
+    ports:
+      - 8066:8055
+    volumes:
+      - ./database:/directus/database
+      - ./uploads:/directus/uploads
+    environment:
+      KEY: "replace-with-random-value"
+      SECRET: "replace-with-random-value"
+      ADMIN_EMAIL: "atemndobs@yahoo.com"
+      ADMIN_PASSWORD: "Atem1234"
+      DB_CLIENT: "sqlite3"
+      DB_FILENAME: "/directus/database/data.db"
+      WEBSOCKETS_ENABLED: "true"
+      WEBSOCKETS_REST_ENABLED: "true"
+      WEBSOCKETS_REST_AUTH : "public"
+      WEBSOCKETS_REST_PATH : "/websocket"
+    networks:
+      - laravel_sail
+
+networks:
+  laravel_sail:
+    name: laravel_sail
